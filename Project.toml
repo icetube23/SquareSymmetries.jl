@@ -1,10 +1,10 @@
 name = "SquareSymmetries"
 uuid = "782ece98-c869-49e9-9e53-16c5dacb9be9"
-authors = ["Elias Kempf <34234056+icetube23@users.noreply.github.com> and contributors"]
+license = "MIT"
 version = "0.1.0"
 
 [compat]
-julia = "1"
+julia = "1.6"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"

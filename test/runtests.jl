@@ -1,6 +1,8 @@
 using SquareSymmetries
 using Test
 
-@testset "SquareSymmetries.jl" begin
-    # Write your tests here.
+@testset "SquareSymmetries" begin
+    @testset "Symmetry group" begin
+        include("symmetry.jl")
+    end
 end
