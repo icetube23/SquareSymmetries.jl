@@ -43,9 +43,9 @@ julia> (rotate180 ∘ flipdiag)(m) # this is equivalent to flipadiag(m)
  0.339932  0.945848
 ```
 
-## Available group elements
+## The group elements
 
-This package provides all eight elements of _D<sub>4</sub>_. Each element is represented as a Julia function: `unit`, `rotate90`, `rotate180`, `rotate270`, `flipx`, `flipy`, `flipdiag`, and `flipadiag`.
+This package provides all eight elements of _D<sub>4</sub>_. Each element is represented by a Julia function: `unit`, `rotate90`, `rotate180`, `rotate270`, `flipx`, `flipy`, `flipdiag`, and `flipadiag`.
 ```julia
 julia> m = ["a11", "a12", "a21", "a22"]
 2×2 Matrix{String}:
@@ -92,6 +92,11 @@ julia> flipadiag(m) # flip elements along anti diagonal
  "a22"  "a12"
  "a21"  "a11"
 ```
+To obtain all eight symmetries at once, you can use the `symmetries` function:
+```julia
+julia> symmetries(m);
+```
+
 ## The symmetry group _D<sub>4</sub>_
 
 Sometimes it might be useful to take advantage of the group structure of _D<sub>4</sub>_. The group _D<sub>4</sub>_ consists of our group elements, the binary operation `∘`, and the unary operation `inv`. We can use this operations directly on our group elements:
