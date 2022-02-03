@@ -10,6 +10,11 @@ rotate270(x::AbstractMatrix) = rotl90(x)
 # no base function directly returns this, but we can easily compose it
 flipadiag(x::AbstractMatrix) = rotate180(flipdiag(x))
 
+const D4 = (unit, rotate90, rotate180, rotate270, flipx, flipy, flipdiag, flipadiag)
+
+# convenient function for getting all symmetries of a given matrix at once
+symmetries(x::AbstractMatrix) = map(g -> g(x), D4)
+
 # binary group operation for elements of the symmetry group
 Base.:∘(::typeof(unit), ::typeof(unit)) = unit
 Base.:∘(::typeof(unit), ::typeof(flipx)) = flipx

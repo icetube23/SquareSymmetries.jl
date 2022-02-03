@@ -69,26 +69,39 @@ end
     # the '∘' function acts as function composition and group operation at the same time
     # it can be used prevent unneeded computations, e.g., (rotate180 ∘ rotate180)(m) does
     # not actually rotate m twice by 180 degrees but directly returns unit(m)
-    elements = [unit, rotate90, rotate180, rotate270, flipx, flipy, flipdiag, flipadiag]
     m = rand(10, 10)
 
-    for g1 in elements
-        for g2 in elements
+    for g1 in SquareSymmetries.D4
+        for g2 in SquareSymmetries.D4
             @test (g1 ∘ g2)(m) == g1(g2(m))
         end
     end
 end
 
 @testset "Inverse elements" begin
-    elements = [unit, rotate90, rotate180, rotate270, flipx, flipy, flipdiag, flipadiag]
     m = rand(10, 10)
 
     # for all group elements g and all matrices m, g(g^(-1)(m)) = g^(-1)(g(m)) = m
-    for g in elements
+    for g in SquareSymmetries.D4
         @test g(inv(g)(m)) == inv(g)(g(m)) == m
     end
 
-    for g in elements
+    for g in SquareSymmetries.D4
         @test g ∘ inv(g) == inv(g) ∘ g == unit
     end
+end
+
+@testset "Symmetries" begin
+    m = rand(10, 10)
+
+    syms = symmetries(m)
+    @test length(syms) == 8
+    @test syms[1] == unit(m)
+    @test syms[2] == rotate90(m)
+    @test syms[3] == rotate180(m)
+    @test syms[4] == rotate270(m)
+    @test syms[5] == flipx(m)
+    @test syms[6] == flipy(m)
+    @test syms[7] == flipdiag(m)
+    @test syms[8] == flipadiag(m)
 end

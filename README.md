@@ -121,7 +121,7 @@ julia> my_alg(m) = ... # some super clever matrix transformation
 
 julia> m = rand(10, 10); # our test matrix
 
-julia> for g in D4
+julia> for g in SquareSymmetries.D4
            @assert inv(g)(my_alg(g(m))) == my_alg(m)
        end 
 ```
