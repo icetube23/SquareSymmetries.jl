@@ -4,7 +4,14 @@
 [![Coverage](https://codecov.io/gh/icetube23/SquareSymmetries.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/icetube23/SquareSymmetries.jl)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 
-SquareSymmetries is a small Julia package that allows applying elements of the symmetry group of a square (a.k.a. the dihedral group _D<sub>4</sub>_) to matrices. The symmetry group consists of operations like rotations by 90° and flipping elements along an axis (see also [here](https://en.wikipedia.org/wiki/Symmetry_group)).
+SquareSymmetries is a small Julia package that allows applying elements of the symmetry group of a square (a.k.a. the dihedral group _D<sub>4</sub>_) to matrices. The symmetry group consists of operations like 90° rotations and flipping elements along an axis (see also [here](https://en.wikipedia.org/wiki/Symmetry_group)).
+
+## Installation
+
+To install this package, from the Julia REPL, enter Pkg mode by typing `]` and execute the following:
+```julia
+pkg> add SquareSymmetries
+```
 
 ## Usage
 
@@ -107,13 +114,15 @@ This can improve performance because we effectively replace _n_ computations by 
 ```julia
 julia> m = rand(10000, 10000); # some huge test matrix
 
-julia> rotate180(rotate180(m)) == m # this works but rotates the huge matrix twice
+julia> @time rotate180(rotate180(m)) == m # this works but rotates the huge matrix twice
+  0.228518 seconds (4 allocations: 1.490 GiB, 1.19% gc time)
 true
 
-julia> (rotate180 ∘ rotate180)(m) == m # this is much more efficient as rotate180 ∘ rotate180 = unit = id
+julia> @time (rotate180 ∘ rotate180)(m) == m # this is much more efficient as rotate180 ∘ rotate180 = unit = id
+  0.045496 seconds
 true
 ```
-Admittedly, this example is somewhat artificial. Nevertheless, it shows that whenever we have a situation were we need to apply multiple group elements consecutively, it is beneficial to take their composition first and apply it afterwards.
+Admittedly, this example is somewhat artificial. Nevertheless, note the huge difference in allocated memory. This shows that whenever we have a situation where we need to apply multiple group elements consecutively, it is beneficial to take their composition first and apply it afterwards.
 
 It can also be useful to take the inverse of a group element. For example, consider you have an algorithm that performs some matrix transformation and this transformation should be invariant to the elements of _D<sub>4</sub>_. Then, we could use the following code to verify this:
 ```julia
