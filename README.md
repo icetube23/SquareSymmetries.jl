@@ -2,6 +2,7 @@
 
 [![Build Status](https://github.com/icetube23/SquareSymmetries.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/icetube23/SquareSymmetries.jl/actions/workflows/CI.yml?query=branch%3Amain)
 [![Coverage](https://codecov.io/gh/icetube23/SquareSymmetries.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/icetube23/SquareSymmetries.jl)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 
 SquareSymmetries is a small Julia package that allows applying elements of the symmetry group of a square (a.k.a. the dihedral group _D<sub>4</sub>_) to matrices. The symmetry group consists of operations like 90° rotations and flipping elements along an axis (see also [here](https://en.wikipedia.org/wiki/Symmetry_group)).
